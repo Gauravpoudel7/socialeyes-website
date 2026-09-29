@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { NAV_LINKS } from '../sections.js';
 
-export default function Nav({ current, busy }) {
+export default function Nav({ current }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className={'nav' + (busy ? ' is-busy' : '')}>
+    <nav className="nav">
       <a className="mark" href="#top" aria-current={current === 'top' ? 'page' : undefined}>
         SOCIALEYES<span className="dot">&#9679;</span>
         <span className="ai">AI</span>

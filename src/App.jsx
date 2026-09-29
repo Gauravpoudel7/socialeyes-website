@@ -1,149 +1,108 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Nav from './components/Nav.jsx';
 import Page from './components/Page.jsx';
 import Shutter from './components/Shutter.jsx';
-import { neighbor, parseHash, themeFor, isPanel } from './sections.js';
+import { PANELS, parseHash, themeFor, isPanel } from './sections.js';
 
-const CLOSE_MS = 900;
 const HOLD_MS = 900;
-const OPEN_MS = 1050;
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function wait(ms) {
-  return new Promise((r) => setTimeout(r, ms));
+function scrollToId(id, behavior) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior });
 }
 
 export default function App() {
   const initial = parseHash();
   const [activeId, setActiveId] = useState(initial);
   const [appTheme, setAppTheme] = useState(themeFor(initial));
-  const [lidTheme, setLidTheme] = useState(themeFor(initial));
   const [shutterOpen, setShutterOpen] = useState(false);
-  const [busy, setBusy] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [formNote, setFormNote] = useState(
     'This opens your e-mail app with the message ready to send.'
   );
 
-  const activeRef = useRef(initial);
-  const busyRef = useRef(false);
-  const goToRef = useRef(null);
-
-  const applyPanel = useCallback((id, fromHistory) => {
-    setActiveId(id);
-    activeRef.current = id;
-    setAppTheme(themeFor(id));
-    if (!fromHistory) {
-      history.pushState({ id }, '', '#' + id);
-    }
-    requestAnimationFrame(() => {
-      const el = document.getElementById(id);
-      if (el) el.scrollTop = 0;
-      if (id === 'solutions') {
-        document.getElementById('detect')?.classList.add('go');
-      }
-    });
-  }, []);
-
-  const goTo = useCallback(
-    async (id, { fromHistory = false } = {}) => {
-      if (!id || !isPanel(id)) return;
-      if (id === activeRef.current) return;
-      if (busyRef.current) return;
-
-      const nextTheme = themeFor(id);
-
-      if (prefersReducedMotion()) {
-        setLidTheme(nextTheme);
-        applyPanel(id, fromHistory);
-        setShutterOpen(true);
-        return;
-      }
-
-      busyRef.current = true;
-      setBusy(true);
-      setLidTheme(nextTheme);
-      setShutterOpen(false);
-      await wait(CLOSE_MS);
-      applyPanel(id, fromHistory);
-      await wait(HOLD_MS);
-      setShutterOpen(true);
-      await wait(OPEN_MS);
-      busyRef.current = false;
-      setBusy(false);
-    },
-    [applyPanel]
-  );
-
-  goToRef.current = goTo;
-
   useEffect(() => {
-    history.replaceState({ id: initial }, '', '#' + initial);
-    if (initial === 'solutions') {
-      document.getElementById('detect')?.classList.add('go');
-    }
     if (prefersReducedMotion()) {
       setShutterOpen(true);
       return undefined;
     }
     const t = window.setTimeout(() => setShutterOpen(true), HOLD_MS);
     return () => window.clearTimeout(t);
-    // first paint only
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    function onPop(e) {
-      const id = (e.state && e.state.id) || parseHash();
-      goToRef.current(id, { fromHistory: true });
+    const id = parseHash();
+    if (id !== 'top') {
+      requestAnimationFrame(() => scrollToId(id, 'auto'));
+    }
+  }, []);
+
+  useEffect(() => {
+    function onPop() {
+      const id = parseHash();
+      scrollToId(id, 'auto');
     }
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   useEffect(() => {
-    const panel = document.getElementById(activeId);
-    if (!panel) return undefined;
-    function onScroll() {
-      setShowTop(panel.scrollTop > panel.clientHeight * 0.4);
-    }
-    panel.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => panel.removeEventListener('scroll', onScroll);
-  }, [activeId]);
+    const nodes = PANELS.map((p) => document.getElementById(p.id)).filter(Boolean);
+    if (!nodes.length) return undefined;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (!visible.length) return;
+        const id = visible[0].target.id;
+        setActiveId(id);
+        setAppTheme(themeFor(id));
+      },
+      { rootMargin: `-${60}px 0px -45% 0px`, threshold: [0.15, 0.35, 0.55] }
+    );
+    nodes.forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
-    let startX = 0;
-    let startY = 0;
-    function onStart(e) {
-      startX = e.changedTouches[0].clientX;
-      startY = e.changedTouches[0].clientY;
+    const detect = document.getElementById('detect');
+    if (!detect) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          detect.classList.add('go');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(detect);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    function onScroll() {
+      setShowTop(window.scrollY > window.innerHeight * 0.4);
     }
-    function onEnd(e) {
-      const dx = e.changedTouches[0].clientX - startX;
-      const dy = e.changedTouches[0].clientY - startY;
-      if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy)) return;
-      const next = neighbor(activeRef.current, dx < 0 ? 1 : -1);
-      if (next) goToRef.current(next.id);
-    }
-    window.addEventListener('touchstart', onStart, { passive: true });
-    window.addEventListener('touchend', onEnd, { passive: true });
-    return () => {
-      window.removeEventListener('touchstart', onStart);
-      window.removeEventListener('touchend', onEnd);
-    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   function onClick(e) {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
     const id = a.getAttribute('href').slice(1);
-    if (!id) return;
+    if (!id || !isPanel(id)) return;
     e.preventDefault();
-    goTo(id);
+    history.pushState({ id }, '', '#' + id);
+    scrollToId(id, 'auto');
   }
 
   function onSubmit(e) {
@@ -179,20 +138,20 @@ export default function App() {
   }, [formNote]);
 
   function onTop() {
-    const panel = document.getElementById(activeId);
-    if (panel) panel.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    history.pushState({ id: 'top' }, '', '#top');
   }
 
   return (
     <div
-      className={'app' + (busy ? ' is-busy' : '')}
+      className="app"
       data-theme={appTheme}
       onClick={onClick}
       onSubmit={onSubmit}
     >
-      <Shutter open={shutterOpen} theme={lidTheme} />
-      <Nav current={activeId} busy={busy} />
-      <Page activeId={activeId} />
+      <Shutter open={shutterOpen} theme={themeFor(initial)} />
+      <Nav current={activeId} />
+      <Page />
       <button
         className={'to-top' + (showTop ? ' show' : '')}
         id="toTop"

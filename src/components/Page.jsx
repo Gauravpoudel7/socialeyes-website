@@ -1,8 +1,10 @@
-export default function Page({ activeId }) {
-  const panel = (id) => 'panel' + (activeId === id ? ' is-active' : '');
+import { themeFor } from '../sections.js';
+
+export default function Page() {
+  const panel = (id) => ({ className: 'panel', 'data-theme': themeFor(id) });
   return (
     <>
-      <div className={panel('top')} id="top">
+      <div {...panel('top')} id="top">
       {/* ============ HERO ============ */}
       <header className="hero">
         <div className="hero-grid">
@@ -38,7 +40,7 @@ export default function Page({ activeId }) {
       </div>
       
       {/* ============ CHALLENGES ============ */}
-      <section id="challenges" className={panel('challenges')}>
+      <section id="challenges" {...panel('challenges')}>
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
@@ -138,7 +140,7 @@ export default function Page({ activeId }) {
       </section>
       
       {/* ============ SOLUTIONS ============ */}
-      <section id="solutions" className={panel('solutions')}>
+      <section id="solutions" {...panel('solutions')}>
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
@@ -228,7 +230,7 @@ export default function Page({ activeId }) {
       </section>
       
       {/* ============ PLATFORM ============ */}
-      <section id="platform" className={panel('platform')}>
+      <section id="platform" {...panel('platform')}>
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
@@ -302,7 +304,7 @@ export default function Page({ activeId }) {
       </section>
       
       {/* ============ TECHNOLOGY ============ */}
-      <section id="technology" className={panel('technology')}>
+      <section id="technology" {...panel('technology')}>
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
@@ -425,7 +427,7 @@ export default function Page({ activeId }) {
       </section>
       
       {/* ============ SOCIAL BENEFITS ============ */}
-      <section id="benefits" className={panel('benefits')}>
+      <section id="benefits" {...panel('benefits')}>
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
@@ -479,7 +481,7 @@ export default function Page({ activeId }) {
       </section>
       
       {/* ============ EXPERIENCE ============ */}
-      <section id="experience" className={panel('experience')}>
+      <section id="experience" {...panel('experience')}>
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
@@ -562,7 +564,7 @@ export default function Page({ activeId }) {
       </section>
       
       {/* ============ CONNECT ============ */}
-      <section id="connect" className={panel('connect')}>
+      <section id="connect" {...panel('connect')}>
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>

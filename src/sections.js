@@ -31,9 +31,3 @@ export function parseHash() {
   const id = (window.location.hash || '#top').replace(/^#/, '') || 'top';
   return isPanel(id) ? id : 'top';
 }
-
-export function neighbor(id, dir) {
-  const i = PANELS.findIndex((p) => p.id === id);
-  if (i < 0) return null;
-  return PANELS[i + dir] || null;
-}
