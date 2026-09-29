@@ -44,7 +44,7 @@ export default function Page() {
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
-              <p className="eyebrow"><span className="no">01</span> Challenges</p>
+              <p className="eyebrow">Challenges</p>
               <h2>A new public<br />health reality</h2>
               <p className="q">Chronic, lifestyle-related illness now dominates the healthcare burden in low- and middle-income countries &mdash; and conventional networks were never built for it.</p>
             </div>
@@ -144,7 +144,7 @@ export default function Page() {
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
-              <p className="eyebrow"><span className="no">02</span> Solutions</p>
+              <p className="eyebrow">Solutions</p>
               <h2>SocialEyes MANGO<br />serves people<br />wherever they are</h2>
               <p className="q">And that's not likely to be in a conventional hospital or clinic.</p>
             </div>
@@ -234,7 +234,7 @@ export default function Page() {
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
-              <p className="eyebrow"><span className="no">03</span> Platform</p>
+              <p className="eyebrow">Platform</p>
               <h2>One platform,<br />village to specialist</h2>
               <p className="q">MANGO bridges the gaps between primary care and tertiary services by pushing specialist skills out to the edges.</p>
             </div>
@@ -308,7 +308,7 @@ export default function Page() {
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
-              <p className="eyebrow"><span className="no">04</span> Technology</p>
+              <p className="eyebrow">Technology</p>
               <h2>A deep<br />technology play</h2>
               <p className="q">Starting with ultra-wide-field retinal scans &mdash; an underused window onto the whole body.</p>
             </div>
@@ -431,7 +431,7 @@ export default function Page() {
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
-              <p className="eyebrow"><span className="no">05</span> Social benefits</p>
+              <p className="eyebrow">Social benefits</p>
               <h2>Achieving key<br />development goals</h2>
               <p className="q">Beyond raising effective coverage, SocialEyes transforms the workforce so it aligns realistically with the public health challenges at hand.</p>
             </div>
@@ -485,7 +485,7 @@ export default function Page() {
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
-              <p className="eyebrow"><span className="no">06</span> Experience</p>
+              <p className="eyebrow">Experience</p>
               <h2>Delivering value<br />to the consumers</h2>
               <p className="q">Open, inviting, comfortable buildings with responsive, well-equipped staff &mdash; because a positive consumer experience is not a luxury, it is what brings people back.</p>
             </div>
@@ -568,7 +568,7 @@ export default function Page() {
         <header className="sec-head">
           <div className="sec-head-grid">
             <div>
-              <p className="eyebrow"><span className="no">07</span> Connect</p>
+              <p className="eyebrow">Connect</p>
               <h2>SocialEyes AI enables<br />healthcare collaboration</h2>
               <p className="q">Successful innovation requires healthcare leaders across the region who guide change management and organise large-scale, million-person deployments.</p>
             </div>
