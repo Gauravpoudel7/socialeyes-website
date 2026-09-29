@@ -5,8 +5,8 @@ import Shutter from './components/Shutter.jsx';
 import { neighbor, parseHash, themeFor, isPanel } from './sections.js';
 
 const CLOSE_MS = 900;
-const HOLD_MS = 800;
-const OPEN_MS = 1000;
+const HOLD_MS = 900;
+const OPEN_MS = 1050;
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
