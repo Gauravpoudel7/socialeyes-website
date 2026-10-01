@@ -48,7 +48,6 @@ export default function Page() {
               <h2>A new public<br />health reality</h2>
               <p className="q">Chronic, lifestyle-related illness now dominates the healthcare burden in low- and middle-income countries &mdash; and conventional networks were never built for it.</p>
             </div>
-            <figure className="sec-head-media"><img src="assets/img/sunrise.png" alt="Sunrise over a hillside village in Nepal" loading="lazy" decoding="async" /></figure>
           </div>
         </header>
       
@@ -148,17 +147,21 @@ export default function Page() {
               <h2>SocialEyes MANGO<br />serves people<br />wherever they are</h2>
               <p className="q">And that's not likely to be in a conventional hospital or clinic.</p>
             </div>
-            <figure className="sec-head-media"><img src="assets/img/crowd.png" alt="A crowd gathered at an outreach camp" loading="lazy" decoding="async" /></figure>
           </div>
         </header>
       
         <div className="plain">
           <div className="wrap">
-            <div className="narrow">
-              <p className="eyebrow">Manufacturing capacity</p>
-              <h3>The platform combines mobile medical devices, autonomous AI assessment and language models to replicate clinical skills at arbitrary scale.</h3>
-              <p>SocialEyes MANGO increases access to care from remote, rural communities to densely populated inner-city neighbourhoods. In effect, it manufactures healthcare capacity where none exists.</p>
-              <p>MANGO in some important ways resembles social networks and online merchandising: it makes low-cost goods and services widely available to the public, while accumulating large amounts of consumer behaviour and demographic information.</p>
+            <div className="split">
+              <div className="narrow">
+                <p className="eyebrow">Manufacturing capacity</p>
+                <h3>The platform combines mobile medical devices, autonomous AI assessment and language models to replicate clinical skills at arbitrary scale.</h3>
+                <p>SocialEyes MANGO increases access to care from remote, rural communities to densely populated inner-city neighbourhoods. In effect, it manufactures healthcare capacity where none exists.</p>
+                <p>MANGO in some important ways resembles social networks and online merchandising: it makes low-cost goods and services widely available to the public, while accumulating large amounts of consumer behaviour and demographic information.</p>
+              </div>
+              <figure className="split-media">
+                <img src="assets/img/crowd.png" alt="A crowd gathered at an outreach camp" loading="lazy" decoding="async" />
+              </figure>
             </div>
             <ul className="figs">
               <li><b>800+</b><span>Administrative units in Nepal that could each host a SocialEyes presence, cutting travel from hours to minutes</span></li>
@@ -174,10 +177,11 @@ export default function Page() {
           <div className="wrap">
             <div className="showcase-head">
               <p className="eyebrow">AI at the point of care</p>
-              <h3>Dozens of diseases and risk factors, detected in a few minutes</h3>
-              <p>An illustrative look at the triage output produced while screening a queue at an outreach camp.</p>
+              <h3>Dozens of diseases, detected in a few minutes</h3>
+              <p>Triage from a queue at an outreach camp.</p>
             </div>
             <div className="frame">
+              <div className="shot">
               <img src="assets/img/crowd2.png" alt="A crowd at an outreach camp with AI detection overlays indicating risk" loading="lazy" decoding="async" />
               <div className="retic" style={{ '--c': '#F2A104', left: '14.3%', top: '10.5%', width: '7%', height: '13.5%', animationDelay: '.15s' }}>
                 <i></i><i></i><i></i><i></i><b>&uarr; Blood pressure</b>
@@ -196,6 +200,7 @@ export default function Page() {
               </div>
               <div className="retic rt" style={{ '--c': '#F2A104', left: '75.5%', top: '16%', width: '6%', height: '11%', animationDelay: '1.65s' }}>
                 <i></i><i></i><i></i><i></i><b>Sickle cell screen</b>
+              </div>
               </div>
             </div>
             <div className="readout">
@@ -238,13 +243,12 @@ export default function Page() {
               <h2>One platform,<br />village to specialist</h2>
               <p className="q">MANGO bridges the gaps between primary care and tertiary services by pushing specialist skills out to the edges.</p>
             </div>
-            <figure className="sec-head-media"><img src="assets/img/phone.png" alt="A health worker showing a device to an older woman" loading="lazy" decoding="async" /></figure>
           </div>
         </header>
       
         <div className="plain alt">
           <div className="wrap">
-            <div className="narrow">
+            <div className="narrow center">
               <h3>Connecting every level of care vertically ensures a two-way flow of information &mdash; down to at-home monitoring, and eventually virtual hospital services.</h3>
               <p>Every level of care needs a tailored range of AI-mediated skills. Those suitable for village <i>aashas</i> and urban neighbourhood clinics identify potential at-risk cases early, getting them into the healthcare pipeline before serious complications arise. This front end is the first step to improving effective coverage, using AI to help deliver better care everywhere, and at scale.</p>
             </div>
@@ -277,13 +281,17 @@ export default function Page() {
           </div>
         </div>
       
-        {/* reach map removed: heading text kept */}
         <div className="showcase" id="reach">
           <div className="wrap">
-            <div className="showcase-head" style={{ marginBottom: 0 }}>
-              <p className="eyebrow">Built to scale</p>
-              <h3>MANGO can integrate entire healthcare ecosystems</h3>
-              <p>Illustrative hub clinics, outreach camps and mobile teams across a SocialEyes network, all pooling information via secure networks.</p>
+            <div className="split">
+              <div className="showcase-head" style={{ marginBottom: 0 }}>
+                <p className="eyebrow">Built to scale</p>
+                <h3>MANGO can integrate entire healthcare ecosystems</h3>
+                <p>Illustrative hub clinics, outreach camps and mobile teams across a SocialEyes network, all pooling information via secure networks.</p>
+              </div>
+              <figure className="split-media">
+                <img src="assets/img/phone.png" alt="A health worker showing a device to an older woman" loading="lazy" decoding="async" />
+              </figure>
             </div>
           </div>
         </div>
@@ -312,7 +320,6 @@ export default function Page() {
               <h2>A deep<br />technology play</h2>
               <p className="q">Starting with ultra-wide-field retinal scans &mdash; an underused window onto the whole body.</p>
             </div>
-            <figure className="sec-head-media"><img src="assets/img/eye.png" alt="Close-up of a human eye" loading="lazy" decoding="async" /></figure>
           </div>
         </header>
       
@@ -435,7 +442,6 @@ export default function Page() {
               <h2>Achieving key<br />development goals</h2>
               <p className="q">Beyond raising effective coverage, SocialEyes transforms the workforce so it aligns realistically with the public health challenges at hand.</p>
             </div>
-            <figure className="sec-head-media"><img src="assets/img/staff.png" alt="Young healthcare assistants in clinical coats" loading="lazy" decoding="async" /></figure>
           </div>
         </header>
       
@@ -489,7 +495,6 @@ export default function Page() {
               <h2>Delivering value<br />to the consumers</h2>
               <p className="q">Open, inviting, comfortable buildings with responsive, well-equipped staff &mdash; because a positive consumer experience is not a luxury, it is what brings people back.</p>
             </div>
-            <figure className="sec-head-media"><img src="assets/img/clinic.png" alt="Rendering of a SocialEyes clinic exterior" loading="lazy" decoding="async" /></figure>
           </div>
         </header>
       
@@ -572,7 +577,6 @@ export default function Page() {
               <h2>SocialEyes AI enables<br />healthcare collaboration</h2>
               <p className="q">Successful innovation requires healthcare leaders across the region who guide change management and organise large-scale, million-person deployments.</p>
             </div>
-            <figure className="sec-head-media"><img src="assets/img/meeting.png" alt="Healthcare leaders in discussion around a table" loading="lazy" decoding="async" /></figure>
           </div>
         </header>
       
