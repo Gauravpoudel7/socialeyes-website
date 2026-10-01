@@ -254,7 +254,9 @@ export default function Page() {
             </div>
             <div className="cards">
               <article className="card">
-                <img src="assets/img/frontline.png" alt="A frontline worker showing results on a tablet" loading="lazy" decoding="async" />
+                <div className="card-photo">
+                  <img src="assets/img/frontline.png" alt="A frontline worker showing results on a tablet" loading="lazy" decoding="async" />
+                </div>
                 <div className="body">
                   <span className="rank">At the edge</span>
                   <h4>Frontline workers</h4>
@@ -262,7 +264,9 @@ export default function Page() {
                 </div>
               </article>
               <article className="card">
-                <img src="assets/img/primary.png" alt="A primary care consultation" loading="lazy" decoding="async" />
+                <div className="card-photo">
+                  <img src="assets/img/primary.png" alt="A primary care consultation" loading="lazy" decoding="async" />
+                </div>
                 <div className="body">
                   <span className="rank">Close to home</span>
                   <h4>Primary care</h4>
@@ -270,7 +274,9 @@ export default function Page() {
                 </div>
               </article>
               <article className="card">
-                <img src="assets/img/tertiary.png" alt="Specialists reviewing cases together" loading="lazy" decoding="async" />
+                <div className="card-photo">
+                  <img src="assets/img/tertiary.png" alt="Specialists reviewing cases together" loading="lazy" decoding="async" />
+                </div>
                 <div className="body">
                   <span className="rank">Tertiary</span>
                   <h4>Specialist services</h4>
