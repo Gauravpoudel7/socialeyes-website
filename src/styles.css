@@ -30,7 +30,7 @@
   --measure:36rem;
   --radius:3px;
   --font:'Aptos','Aptos Display','Calibri','Segoe UI',system-ui,sans-serif;
-  --nav-font:Georgia,'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,serif;
+  --nav-font:var(--font);
 }
 
 [data-theme="warm"]{
@@ -91,6 +91,7 @@ body, .app{
 
 img{max-width:100%;display:block}
 a{color:inherit}
+button,input,select,textarea{font-family:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em}
 p{margin:0 0 1.05em}
